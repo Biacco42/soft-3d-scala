@@ -1,8 +1,8 @@
 package info.biacco42.study.soft3d
 
-trait ImageBuffer {
+trait ImageBuffer[PT <: PixelType] {
   def width: Int
   def height: Int
-  def apply(index: Int): Pixel
-  def update(index: Int, pixel: Pixel): Unit
+  def apply(index: Int): PT
+  def update(index: Int, pixel: PT): Unit
 }

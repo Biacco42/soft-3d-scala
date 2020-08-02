@@ -19,6 +19,14 @@ ThisBuild / scalacOptions     ++= Seq("-unchecked", "-deprecation", "-encoding",
 run / fork                    := true
 run / javaOptions             += "-Djava.library.path=lib"
 
+externalResolvers += "3DCG LinAlg packages" at "https://maven.pkg.github.com/Biacco42/scala-3dcg-linalg"
+credentials +=
+  Credentials(
+    "GitHub Package Registry",
+    "maven.pkg.github.com",
+    "Biacco42",
+    sys.env("GITHUB_TOKEN"))
+
 // Release Task
 lazy val release = taskKey[Unit]("Publishes release package")
 lazy val javaHome = Paths.get(sys.env("JAVA_HOME"))
@@ -47,6 +55,7 @@ lazy val root = (project in file("."))
     name := "soft-3d-scala",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.1" % Test,
     libraryDependencies ++= javaFXModules,
+    libraryDependencies += "info.biacco42" %% "scala-3dcg-linalg" % "0.1.1-SNAPSHOT",
     release := {
       assembly.value
       ReleaseTask.buildReleasePackage(

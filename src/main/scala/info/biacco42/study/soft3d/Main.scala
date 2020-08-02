@@ -13,8 +13,8 @@ object Main extends App {
 }
 
 class AppMain extends Application {
-  val renderBuffer: JFXHeapImageBuffer = new JFXHeapImageBuffer(640, 480)
-  val renderer: Soft3DRenderer = Soft3DRenderer()
+  val renderBuffer: JFXHeapARGBImageBuffer = new JFXHeapARGBImageBuffer(640, 480)
+//  val renderer: Soft3DRenderer = Soft3DRenderer()
 
   override def start(stage: Stage): Unit = {
     val pixelFormat = PixelFormat.getIntArgbPreInstance

@@ -1,6 +1,8 @@
 package info.biacco42.study.soft3d
 
-case class Pixel private (a: Int, r: Int, g: Int, b: Int) {
+sealed trait PixelType
+
+final case class ARGB(a: Int, r: Int, g: Int, b: Int) extends PixelType {
   private def this(intRepresentation: Int) = {
     this(
       intRepresentation >> 24 & 0xff,
@@ -15,7 +17,9 @@ case class Pixel private (a: Int, r: Int, g: Int, b: Int) {
   }
 }
 
-object Pixel {
-  def apply(a: Int, r: Int, g: Int, b: Int): Pixel = new Pixel(a, r, g, b)
-  def apply(intRepresentation: Int): Pixel = new Pixel(intRepresentation)
+object ARGB {
+  def apply(intRepresentation: Int): ARGB = new ARGB(intRepresentation)
 }
+
+final case class Depth(index: Int) extends PixelType {}
+final case class Raw(value: Int) extends PixelType {}
